@@ -1,0 +1,82 @@
+/** {*/
+/*    box-sizing: border-box;*/
+/*}*/
+
+body, html {
+    height: 100%;
+    background-color: #36454F;
+}
+
+.content {
+    display: flex;
+    height: 100%;
+}
+
+.codePanel {
+    /*background-color: green;*/
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.codePanel code-input{
+    width: 90%;
+    height: 90%;
+}
+
+.sidePanel {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.aiHelper{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+.aiHelper .userQuery{
+
+}
+
+.aiHelper code-input{
+    width: 80%;
+    height: 60%;
+}
+
+.aiHelper input{
+    border-radius:5px;
+    width: 100%;
+}
+
+code-input{
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --padding:20px;
+}
+
+.output{
+    /*background-color: red;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
+
+#outputWindow{
+    width: 90%;
+    height: 90%;
+    background-color:white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.aiHelper {
+    /*background-color: blue;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+}
