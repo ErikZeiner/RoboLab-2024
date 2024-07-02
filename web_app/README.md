@@ -3,5 +3,6 @@
 # Notes
 - text editor - https://github.com/WebCoder49/code-input
 - https://ai.google.dev/gemini-api/docs/quickstart?lang=python
-Because standard does not work in germany
+Because standard does not work in Germany
 https://cloud.google.com/vertex-ai#build-with-gemini
+https://www.30secondsofcode.org/js/s/word-wrap/

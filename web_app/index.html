@@ -5,10 +5,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-    <!-- PyScript CSS -->
-    <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.2/core.css">
-    <!-- This script tag bootstraps PyScript -->
-    <script type="module" src="https://pyscript.net/releases/2024.6.2/core.js"></script>
+     PyScript CSS
+        <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.2/core.css">
+         This script tag bootstraps PyScript
+<!--        <script type="module" src="https://pyscript.net/releases/2024.6.2/core.js"></script>-->
 
     <!--Import highlight.js-->
     <!--For a downloaded version of highlight.js, replace the file paths for both CSS and JS below with the relative file paths from this HTML file.-->
@@ -46,54 +46,30 @@
         );
         // Register templates with different names here, if needed.
     </script>
+
+    <script type="importmap">
+        {
+            "imports": {
+                "@google/generative-ai": "https://esm.run/@google/generative-ai"
+            }
+        }
+    </script>
+    <script src="script.js" type="module"></script>
 </head>
 <body>
-
-
-<script type="importmap">
-    {
-      "imports": {
-        "@google/generative-ai": "https://esm.run/@google/generative-ai"
-      }
-    }
-</script>
-<script type="text/javascript">
-    import {GoogleGenerativeAI} from "@google/generative-ai";
-
-    // Access your API key (see "Set up your API key" above)
-    const genAI = new GoogleGenerativeAI("AIzaSyB1eqX5raYM4CmkVP044nkU6Dp9KqDIALM");
-
-    async function run() {
-        // The Gemini 1.5 models are versatile and work with both text-only and multimodal prompts
-        const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
-
-        const prompt = "Write a story about a magic backpack."
-
-        const result = await model.generateContent(prompt);
-        const response = await result.response;
-        const text = response.text();
-        console.log(text);
-    }
-
-    run();
-</script>
-
-
 <div class="content">
     <div class="sidePanel">
         <div class="output">
             <div id="outputWindow">
             </div>
         </div>
-
         <div class="aiHelper">
-            <code-input class="aiHelperWindow" language="plaintext">Hello, I am an AI here to help you</code-input>
-            <div class="userQuery">
-                <input>
-                <button id='sendRequestBtn'>Ask Ai</button>
+            <textarea id="aiHelperWindow" readonly>Hi, I am an AI here to help you.
+            </textarea>
+            <div class="userQueryWindow">
+                <input id="userQuery" placeholder="Type to ask the AI">
+                <button id="userQueryBtn">Ask Ai</button>
             </div>
-
-
         </div>
     </div>
     <div class="codePanel">
@@ -102,6 +78,5 @@
 </div>
 
 
-<!--    <script type="py" src="./app.py" config="./pyscript.toml"></script>-->
 </body>
 </html>
