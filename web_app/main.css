@@ -1,9 +1,10 @@
 body, html {
     height: 100%;
-    background-color: #36454F;
+    background-color: #FFB343;
 }
 
 .content {
+    margin-top: 60px;
     display: flex;
     height: 100%;
 }
@@ -79,3 +80,58 @@ code-input {
     align-items: center;
     flex: 1;
 }
+
+
+/*Dropdown menu*/
+nav {
+  float: none;
+  position: absolute;
+    top:30px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+ul{text-align: left;}
+nav ul {
+    width: 100%;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+}
+
+nav li {
+    flex: 1;
+    border-radius: 10px;
+    padding:5px;
+    margin: 0 10px;
+    background-color: white;
+    box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav li a {
+    border: 1px solid black;
+    border-radius: 10px;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    color: black;
+}
+
+nav li:hover {
+    font-weight: bold;
+}
+
+nav .dropDown{
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+
+}
+
+#dropDown1:hover #menu1 {display: block;}

@@ -5,10 +5,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="main.css">
-     PyScript CSS
-        <link rel="stylesheet" href="https://pyscript.net/releases/2024.6.2/core.css">
-         This script tag bootstraps PyScript
-<!--        <script type="module" src="https://pyscript.net/releases/2024.6.2/core.js"></script>-->
 
     <!--Import highlight.js-->
     <!--For a downloaded version of highlight.js, replace the file paths for both CSS and JS below with the relative file paths from this HTML file.-->
@@ -54,18 +50,42 @@
             }
         }
     </script>
+
+
     <script src="script.js" type="module"></script>
 </head>
 <body>
+<nav>
+        <ul>
+            <li id="menu1">Select Activity</li>
+            <div class="dropDown" id="dropDown1">
+                <a href="#">Maze Level 1</a>
+            </div>
+            <li id="menu2">Ai Settings</li>
+            <div class="dropDown" id="dropDown2">
+                <a href="#">Playful personality</a>
+                <a href="#">Stern personality</a>
+                <a href="#">Patient personality</a>
+            </div>
+            <li id="menu3">Themes</li>
+            <div class="dropDown" id="dropDown3">
+                <a href="#">Light</a>
+                <a href="#">Default</a>
+                <a href="#">Light</a>
+                <a href="#">Dark</a>
+            </div>
+        </ul>
+    </nav>
 <div class="content">
+
+
     <div class="sidePanel">
         <div class="output">
             <div id="outputWindow">
             </div>
         </div>
         <div class="aiHelper">
-            <textarea id="aiHelperWindow" readonly>Hi, I am an AI here to help you.
-            </textarea>
+            <textarea id="aiHelperWindow" readonly></textarea>
             <div class="userQueryWindow">
                 <input id="userQuery" placeholder="Type to ask the AI">
                 <button id="userQueryBtn">Ask Ai</button>
@@ -73,7 +93,8 @@
         </div>
     </div>
     <div class="codePanel">
-        <code-input language="python"></code-input>
+        <button id="runBtn">Run Code</button>
+        <code-input id="userCode" language="python"></code-input>
     </div>
 </div>
 
