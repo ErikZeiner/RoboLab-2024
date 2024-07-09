@@ -5,7 +5,11 @@
 - [ ] pygame visualisation
 - [ ] table for checking validity
 - [ ] user usable methods doing visualisation and validity
-- [ ] 
+
+- [ ] run code if valid basically starts the game, the game runs through the commands
+- moving one thing could be pressing the key for a time needed for the robot to move
+- keep array with the gameboard and also rescale for the display path
+- by giving instructions to which cell in the board to move - rescaling gives final place for the game to move
 
 run input against a python regex, if it passes that 
 
@@ -28,3 +32,4 @@ Because standard does not work in Germany
 https://cloud.google.com/vertex-ai#build-with-gemini
 https://www.30secondsofcode.org/js/s/word-wrap/
 https://www.w3schools.com/howto/howto_css_dropdown.asp
+https://www.youtube.com/results?search_query=javascript%20find%20path%20game
