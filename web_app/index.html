@@ -1,10 +1,12 @@
 <!doctype html>
-<html>
+<html class="h-full bg-amber-400">
 <head>
     <!-- Recommended meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <link rel="stylesheet" href="main.css">
+    <!--    <link rel="stylesheet" href="main.css">-->
+    <link rel="stylesheet" href="output.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!--Import highlight.js-->
     <!--For a downloaded version of highlight.js, replace the file paths for both CSS and JS below with the relative file paths from this HTML file.-->
@@ -55,46 +57,68 @@
     <script src="script.js" type="module"></script>
 </head>
 <body>
-<nav>
-        <ul>
-            <li id="menu1">Select Activity</li>
-            <div class="dropDown" id="dropDown1">
-                <a href="#">Maze Level 1</a>
-            </div>
-            <li id="menu2">Ai Settings</li>
-            <div class="dropDown" id="dropDown2">
-                <a href="#">Playful personality</a>
-                <a href="#">Stern personality</a>
-                <a href="#">Patient personality</a>
-            </div>
-            <li id="menu3">Themes</li>
-            <div class="dropDown" id="dropDown3">
-                <a href="#">Light</a>
-                <a href="#">Default</a>
-                <a href="#">Light</a>
-                <a href="#">Dark</a>
-            </div>
+<div class="navbar bg-yellow-500">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>
+    </div>
+    <div class="flex-none">
+        <ul class="menu menu-horizontal px-1">
+            <li>
+                <details>
+                    <summary>Levels</summary>
+                    <ul class="bg-yellow-500 rounded-t-none p-2">
+                        <li><a>Link 1</a></li>
+                        <li><a>Link 2</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details>
+                    <summary>Student</summary>
+                    <ul class="bg-yellow-500 rounded-t-none p-2">
+                        <li><a>Link 1</a></li>
+                        <li><a>Link 2</a></li>
+                    </ul>
+                </details>
+            </li>
+            <li>
+                <details>
+                    <summary>RoboAI</summary>
+                    <ul class="bg-base-100 rounded-t-none p-2">
+                        <li><a>Link 1</a></li>
+                        <li><a>Link 2</a></li>
+                    </ul>
+                </details>
+            </li>
         </ul>
-    </nav>
-<div class="content">
+    </div>
+</div>
 
-
-    <div class="sidePanel">
+<div class="content columns-2">
+    <div class="">
         <div class="output">
-            <canvas id="outputWindow">
+            <canvas id="outputWindow" class="bg-white shadow-lg rounded-lg m-8">
             </canvas>
         </div>
-        <div class="aiHelper">
-            <textarea id="aiHelperWindow" readonly></textarea>
-            <div class="userQueryWindow">
-                <input id="userQuery" placeholder="Type to ask the AI">
-                <button id="userQueryBtn">Ask Ai</button>
+        <div class="bg-amber-100 shadow-lg rounded-lg">
+            <div class="chat chat-start">
+                <div class="chat-bubble bg-amber-400 w-120 min-h-40">
+                    <textarea id="aiChat" class=" bg-transparent textarea select-none peer h-full min-h-[200px] w-full resize-none text-black"
+                              readonly></textarea>
+                </div>
             </div>
+            <div class="chat chat-end">
+                <input type="text" id="userChat"
+                       class="chat-bubble bg-amber-400 text-black"
+                       placeholder="Type to ask the AI">
+            </div>
+
+
         </div>
     </div>
-    <div class="codePanel">
-        <button id="runBtn">Run Code</button>
-        <code-input id="userCode" language="python">moveLeft(1)</code-input>
+    <div class="codePanel break-before-column">
+        <code-input id="userCode" class="shadow-lg rounded-lg" language="python">moveLeft(1)</code-input>
+        <button class="btn btn-block" id="runBtn">Run Code</button>
     </div>
 </div>
 

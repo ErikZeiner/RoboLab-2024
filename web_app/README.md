@@ -11,6 +11,11 @@
 - keep array with the gameboard and also rescale for the display path
 - by giving instructions to which cell in the board to move - rescaling gives final place for the game to move
 
+- language/difficulty level
+- prompt with difficulty and personality
+- write up what it can and what it could do.
+- check on the template license
+
 run input against a python regex, if it passes that 
 
 check

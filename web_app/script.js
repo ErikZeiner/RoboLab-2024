@@ -1,6 +1,8 @@
 // @author: Erik Zeiner
 
 
+import Robot from "./robot.js";
+
 const def_prompt = 'Your name is RoboAI, you are a personalised AI tutor for a student learning how to program and test robots within a software. This software is called RoboLab, a virtual environment for learning how to program and test robots. This platform will provide various scenarios, such as programming a robot to follow a path surrounded by walls. You are the AI tutor integrated into this software. You are a helpful, encouraging tutor who assists the student.\n' +
     '\n' +
     '\n' +
@@ -62,7 +64,7 @@ async function sendRequest(prompt) {
         const text = response.text();
         return text;
     } catch (e) {
-        document.getElementById('aiHelperWindow').value = "Sorry, I can't help you with that.";
+        document.getElementById('aiChat').value = "Sorry, I can't help you with that.";
     }
 }
 
@@ -73,22 +75,26 @@ function testCode(text) {
 
 }
 
-document.getElementById('userQueryBtn').onclick = async () => {
-    document.getElementById('aiHelperWindow').value = "Hmm, let me think...";
-    document.getElementById('aiHelperWindow').value = await sendRequest(document.getElementById('userQuery').value);
-}
+const node = document.getElementsByClassName("input1")[0];
+document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
+    if (key === "Enter") {
+        document.getElementById('aiChat').value = "Hmm, let me think...";
+        document.getElementById('aiChat').value = await sendRequest(document.getElementById('userChat').value);
+    }
+})
+
 document.getElementById('runBtn').onclick = async () => {
     if (testCode(document.getElementById('userCode').value)) {
-        document.getElementById('aiHelperWindow').value = "Your code looks correct. Let's see if achieves the task!";
+        document.getElementById('aiChat').value = "Your code looks correct. Let's see if achieves the task!";
         run();
     } else {
-        document.getElementById('aiHelperWindow').value = "Your code is not correct.";
-        document.getElementById('aiHelperWindow').value = await sendRequest("I wrote this code:\n" + document.getElementById('userCode').value + "\n Help me figure out what I did wrong.");
+        document.getElementById('aiChat').value = "Your code is not correct.";
+        document.getElementById('aiChat').value = await sendRequest("I wrote this code:\n" + document.getElementById('userCode').value + "\n Help me figure out what I did wrong.");
     }
 }
 
 window.addEventListener('load', function () {
-    document.getElementById('aiHelperWindow').value = "Try writing some code! I am here if you need me.";
+    document.getElementById('aiChat').value = "Try writing some code! I am here if you need me.";
 })
 
 
@@ -123,15 +129,8 @@ function run() {
     // robot.draw(ctx);
     console.log("run ran")
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-
-    var img = new Image(); // Create new img element
-    img.onload = function () {
-        console.log("imgLoaded");
-        ctx.drawImage(img, 50, 25,30,30);
-    };
-    img.src = "https://external-content.duckduckgo.com/iu/?u=https://img2.gratispng.com/20180808/cxq/kisspng-robotics-science-computer-icons-robot-technology-robo-to-logo-svg-png-icon-free-download-45527-5b6baa46a5e322.4713113715337825986795.jpg&f=1&nofb=1&ipt=4855c0299a3efdd98e08443b4ebb3c861e68356cbf0202d2c1ea1721c9251e89&ipo=images&kp=1"; // Set source path
-
+    let r = new Robot(ctx, 20, 20, 20, 20);
+    r.draw();
 }
 
 

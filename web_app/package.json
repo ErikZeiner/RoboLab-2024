@@ -13,5 +13,8 @@
   "private": true,
   "dependencies": {
     "@google/generative-ai": "^0.14.1"
+  },
+  "devDependencies": {
+    "daisyui": "^4.12.10"
   }
 }
