@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full bg-amber-400">
+<html class="h-full bg-primary">
 <head>
     <!-- Recommended meta tags -->
     <meta charset="UTF-8">
@@ -57,68 +57,140 @@
     <script src="script.js" type="module"></script>
 </head>
 <body>
-<div class="navbar bg-yellow-500">
-    <div class="flex-1">
-        <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>
-    </div>
-    <div class="flex-none">
-        <ul class="menu menu-horizontal px-1">
-            <li>
-                <details>
-                    <summary>Levels</summary>
-                    <ul class="bg-yellow-500 rounded-t-none p-2">
-                        <li><a>Link 1</a></li>
-                        <li><a>Link 2</a></li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>Student</summary>
-                    <ul class="bg-yellow-500 rounded-t-none p-2">
-                        <li><a>Link 1</a></li>
-                        <li><a>Link 2</a></li>
-                    </ul>
-                </details>
-            </li>
-            <li>
-                <details>
-                    <summary>RoboAI</summary>
-                    <ul class="bg-base-100 rounded-t-none p-2">
-                        <li><a>Link 1</a></li>
-                        <li><a>Link 2</a></li>
-                    </ul>
-                </details>
-            </li>
-        </ul>
-    </div>
-</div>
+<!--<div class="navbar bg-yellow-500">-->
+<!--    <div class="flex-1">-->
+<!--        <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>-->
+<!--    </div>-->
+<!--    <div class="flex-none">-->
+<!--        <ul class="menu menu-horizontal px-1">-->
+<!--            <li>-->
+<!--                <details>-->
+<!--                    <summary>Levels</summary>-->
+<!--                    <ul class="bg-yellow-500 rounded-t-none p-2">-->
+<!--                        <li><a>Link 1</a></li>-->
+<!--                        <li><a>Link 2</a></li>-->
+<!--                    </ul>-->
+<!--                </details>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <details>-->
+<!--                    <summary>Student</summary>-->
+<!--                    <ul class="bg-yellow-500 rounded-t-none p-2">-->
+<!--                        <li><a>Link 1</a></li>-->
+<!--                        <li><a>Link 2</a></li>-->
+<!--                    </ul>-->
+<!--                </details>-->
+<!--            </li>-->
+<!--            <li>-->
+<!--                <details>-->
+<!--                    <summary>RoboAI</summary>-->
+<!--                    <ul class="bg-base-100 rounded-t-none p-2">-->
+<!--                        <li><a>Link 1</a></li>-->
+<!--                        <li><a>Link 2</a></li>-->
+<!--                    </ul>-->
+<!--                </details>-->
+<!--            </li>-->
+<!--        </ul>-->
+<!--    </div>-->
+<!--</div>-->
 
-<div class="content columns-2">
-    <div class="">
-        <div class="output">
-            <canvas id="outputWindow" class="bg-white shadow-lg rounded-lg m-8">
-            </canvas>
+<div class="drawer">
+    <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
+    <div class="drawer-content flex flex-col">
+        <!-- Navbar -->
+        <div class="navbar bg-transparent w-full">
+            <div class="flex-none lg:hidden">
+                <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
+                    <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            class="inline-block h-6 w-6 stroke-current">
+                        <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </label>
+            </div>
+            <div class="flex-1">
+                <a class="btn btn-ghost text-xl">RoboLab</a>
+            </div>
         </div>
-        <div class="bg-amber-100 shadow-lg rounded-lg">
-            <div class="chat chat-start">
-                <div class="chat-bubble bg-amber-400 w-120 min-h-40">
-                    <textarea id="aiChat" class=" bg-transparent textarea select-none peer h-full min-h-[200px] w-full resize-none text-black"
+        <div class="container columns-2 p-12">
+            <div class="output">
+                <canvas id="outputWindow" class="bg-white shadow-lg rounded-lg m-8">
+                </canvas>
+            </div>
+            <div class="bg-neutral shadow-lg rounded-2xl p-4">
+                <div class="chat chat-start">
+                    <div class="chat-bubble bg-primary w-120 min-h-40">
+                    <textarea id="aiChat"
+                              class=" bg-transparent textarea select-none peer h-full min-h-[200px] w-full resize-none text-black"
                               readonly></textarea>
+                    </div>
                 </div>
-            </div>
-            <div class="chat chat-end">
-                <input type="text" id="userChat"
-                       class="chat-bubble bg-amber-400 text-black"
-                       placeholder="Type to ask the AI">
-            </div>
+                <div class="chat chat-end">
+                    <input type="text" id="userChat"
+                           class="chat-bubble bg-primary text-black"
+                           placeholder="Type to ask the AI">
+                </div>
 
 
+            </div>
+            <div class="break-before-column mockup-window bg-neutral border">
+                <code-input id="userCode" class="" language="python"></code-input>
+                <button class="btn bg-primary  m-4" id="runBtn">Run Code</button>
+            </div>
         </div>
     </div>
-    <div class="codePanel break-before-column">
-        <code-input id="userCode" class="shadow-lg rounded-lg" language="python">moveLeft(1)</code-input>
-        <button class="btn btn-block" id="runBtn">Run Code</button>
+    <div class="drawer-side">
+        <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
+        <div class="menu bg-secondary min-h-full w-80 p-4">
+            <span class="text-xl font-bold">Level</span>
+            <div class="form-control">
+                <label class="label cursor-pointer">
+                    <span class="label-text">Primary School</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+                <label class="label cursor-pointer">
+                    <span class="label-text">Secondary School</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+                <label class="label cursor-pointer">
+                    <span class="label-text">High School</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+                <label class="label cursor-pointer">
+                    <span class="label-text">University</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+            </div>
+            <div class="divider"></div>
+            <span class="text-xl font-bold">RoboAI Helpfullness</span>
+            <div class="form-control">
+                <label class="label cursor-pointer">
+                    <span class="label-text">A lot of help</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+                <label class="label cursor-pointer">
+                    <span class="label-text">Only little hints</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+                <label class="label cursor-pointer">
+                    <span class="label-text">Straight up unhelpfull</span>
+                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                </label>
+            </div>
+            <div class="divider"></div>
+            <span class="text-xl font-bold">Theme</span>
+            <select class="select select-bordered w-full max-w-xs bg-secondary">
+                <option selected>Yellow</option>
+                <option>Light</option>
+                <option>Dark</option>
+            </select>
+        </div>
     </div>
 </div>
 
