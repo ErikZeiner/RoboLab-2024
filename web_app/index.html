@@ -57,49 +57,13 @@
     <script src="script.js" type="module"></script>
 </head>
 <body>
-<!--<div class="navbar bg-yellow-500">-->
-<!--    <div class="flex-1">-->
-<!--        <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>-->
-<!--    </div>-->
-<!--    <div class="flex-none">-->
-<!--        <ul class="menu menu-horizontal px-1">-->
-<!--            <li>-->
-<!--                <details>-->
-<!--                    <summary>Levels</summary>-->
-<!--                    <ul class="bg-yellow-500 rounded-t-none p-2">-->
-<!--                        <li><a>Link 1</a></li>-->
-<!--                        <li><a>Link 2</a></li>-->
-<!--                    </ul>-->
-<!--                </details>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <details>-->
-<!--                    <summary>Student</summary>-->
-<!--                    <ul class="bg-yellow-500 rounded-t-none p-2">-->
-<!--                        <li><a>Link 1</a></li>-->
-<!--                        <li><a>Link 2</a></li>-->
-<!--                    </ul>-->
-<!--                </details>-->
-<!--            </li>-->
-<!--            <li>-->
-<!--                <details>-->
-<!--                    <summary>RoboAI</summary>-->
-<!--                    <ul class="bg-base-100 rounded-t-none p-2">-->
-<!--                        <li><a>Link 1</a></li>-->
-<!--                        <li><a>Link 2</a></li>-->
-<!--                    </ul>-->
-<!--                </details>-->
-<!--            </li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--</div>-->
 
 <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
-    <div class="drawer-content flex flex-col">
+    <div class="drawer-content">
         <!-- Navbar -->
         <div class="navbar bg-transparent w-full">
-            <div class="flex-none lg:hidden">
+            <div class="flex-none">
                 <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
                     <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -118,31 +82,37 @@
                 <a class="btn btn-ghost text-xl">RoboLab</a>
             </div>
         </div>
-        <div class="container columns-2 p-12">
-            <div class="output">
-                <canvas id="outputWindow" class="bg-white shadow-lg rounded-lg m-8">
-                </canvas>
-            </div>
-            <div class="bg-neutral shadow-lg rounded-2xl p-4">
-                <div class="chat chat-start">
-                    <div class="chat-bubble bg-primary w-120 min-h-40">
+
+
+        <div class="flex flex-row gap-8 bg-green-500 max-w-[80%]">
+            <div class="flex basis-1/2 flex-col gap-4">
+                <div class="output bg-neutral p-4 rounded-2xl">
+                    <canvas id="outputWindow" class="bg-white w-full h-full rounded-2xl">
+
+                    </canvas>
+                </div>
+                <div class="bg-neutral shadow-lg rounded-2xl p-4">
+                    <div class="chat chat-start">
+                        <div class="chat-bubble bg-primary">
                     <textarea id="aiChat"
-                              class=" bg-transparent textarea select-none peer h-full min-h-[200px] w-full resize-none text-black"
+                              class=" bg-transparent textarea select-none h-full w-full resize-none text-black"
                               readonly></textarea>
+                        </div>
+                    </div>
+
+                    <div class="chat chat-end">
+                        <input type="text" id="userChat"
+                               class="chat-bubble bg-primary text-black min-w-36"
+                               placeholder="Type to ask the AI">
                     </div>
                 </div>
-                <div class="chat chat-end">
-                    <input type="text" id="userChat"
-                           class="chat-bubble bg-primary text-black"
-                           placeholder="Type to ask the AI">
-                </div>
-
-
             </div>
-            <div class="break-before-column mockup-window bg-neutral border">
+
+            <div class="basis-1/2 mockup-window bg-neutral">
                 <code-input id="userCode" class="" language="python"></code-input>
-                <button class="btn bg-primary  m-4" id="runBtn">Run Code</button>
+                <button class="btn btn-primary m-4" id="runBtn">Run Code</button>
             </div>
+
         </div>
     </div>
     <div class="drawer-side">
@@ -194,6 +164,6 @@
     </div>
 </div>
 
-
+<img id = "imgRobot" style = "display:none" src="placeholder.jpg">
 </body>
 </html>

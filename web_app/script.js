@@ -134,6 +134,11 @@ function run() {
 }
 
 
+
+
+let imgRobot = document.getElementById('imgRobot');
+ctx.drawImage(imgRobot, 0, 0);
+
 // class Robot {
 //
 //     img = new Image();
