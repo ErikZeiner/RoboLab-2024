@@ -1,7 +1,4 @@
-// @author: Erik Zeiner
-
-
-import Robot from "./robot.js";
+import { runCode } from './script.js';
 
 const def_prompt = 'Your name is RoboAI, you are a personalised AI tutor for a student learning how to program and test robots within a software. This software is called RoboLab, a virtual environment for learning how to program and test robots. This platform will provide various scenarios, such as programming a robot to follow a path surrounded by walls. You are the AI tutor integrated into this software. You are a helpful, encouraging tutor who assists the student.\n' +
     '\n' +
@@ -69,13 +66,13 @@ async function sendRequest(prompt) {
 }
 
 function testCode(text) {
-    console.log(text);
-    var regex = /(^move(Right|Left|Up|Down|)\(([0-9]{1,2})\)$\n?)+/;
+
+    let regex = /(^move(Right|Left|Up|Down|)\(([0-9]{1,2})\)$\n?)+/gm;
+    console.log(text + "---" + text.match(regex));
     return regex.test(text);
 
 }
 
-const node = document.getElementsByClassName("input1")[0];
 document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
     if (key === "Enter") {
         document.getElementById('aiChat').value = "Hmm, let me think...";
@@ -84,9 +81,12 @@ document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
 })
 
 document.getElementById('runBtn').onclick = async () => {
+
+    console.log('runCode');
     if (testCode(document.getElementById('userCode').value)) {
+        console.log('runCode');
         document.getElementById('aiChat').value = "Your code looks correct. Let's see if achieves the task!";
-        run();
+        runCode(document.getElementById('userCode').value);
     } else {
         document.getElementById('aiChat').value = "Your code is not correct.";
         document.getElementById('aiChat').value = await sendRequest("I wrote this code:\n" + document.getElementById('userCode').value + "\n Help me figure out what I did wrong.");
@@ -96,67 +96,3 @@ document.getElementById('runBtn').onclick = async () => {
 window.addEventListener('load', function () {
     document.getElementById('aiChat').value = "Try writing some code! I am here if you need me.";
 })
-
-
-/*game dev*/
-
-let canvas = document.getElementById('outputWindow');
-let ctx = canvas.getContext('2d');
-
-
-function chooseLevel() {
-    let level1 = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
-}
-
-function loop() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-}
-
-
-function run() {
-    // let robot = new Robot();
-    // robot.draw(ctx);
-    console.log("run ran")
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    let r = new Robot(ctx, 20, 20, 20, 20);
-    r.draw();
-}
-
-
-
-
-let imgRobot = document.getElementById('imgRobot');
-ctx.drawImage(imgRobot, 0, 0);
-
-// class Robot {
-//
-//     img = new Image();
-//     startX = 0;
-//     startY = 0;
-//     robotWidth = 10;
-//     robotHeight = 10;
-//
-//     constructor(width, height, startX, startY) {
-//         img.onload = draw;
-//         img.src = "placeholder.jpg";
-//
-//         this.startX = startX;
-//         this.startY = startY;
-//
-//     }
-//
-//     draw(ctx) {
-//         ctx.drawImage(this.img, this.startX, this.startY, this.robotWidth, this.robotHeight);
-//     }
-// }

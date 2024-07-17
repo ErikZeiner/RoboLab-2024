@@ -30,6 +30,15 @@ one that check against a table representation of the maze
 - read prompt from file
 
 
+
+
+set a target, if target is not reached move to the target. Target is offset by the commands form the user and the robot just follows
+
+
+
+
+
+
 # Notes
 - text editor - https://github.com/WebCoder49/code-input
 - https://ai.google.dev/gemini-api/docs/quickstart?lang=python
@@ -38,3 +47,5 @@ https://cloud.google.com/vertex-ai#build-with-gemini
 https://www.30secondsofcode.org/js/s/word-wrap/
 https://www.w3schools.com/howto/howto_css_dropdown.asp
 https://www.youtube.com/results?search_query=javascript%20find%20path%20game
+daisyui
+https://github.com/saadeghi/theme-change

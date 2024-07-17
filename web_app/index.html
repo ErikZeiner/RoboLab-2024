@@ -1,12 +1,12 @@
 <!doctype html>
-<html class="h-full bg-primary">
+<html class="h-full" style="background-color: var(--bg-primary)">
 <head>
     <!-- Recommended meta tags -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <!--    <link rel="stylesheet" href="main.css">-->
-    <link rel="stylesheet" href="output.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/output.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
 
     <!--Import highlight.js-->
     <!--For a downloaded version of highlight.js, replace the file paths for both CSS and JS below with the relative file paths from this HTML file.-->
@@ -54,10 +54,9 @@
     </script>
 
 
-    <script src="script.js" type="module"></script>
 </head>
 <body>
-
+<img id="imgRobot" style="display: none" src="https://i.pinimg.com/originals/ff/5d/5e/ff5d5e39d3c8f0e4ad26651d89160e74.png">
 <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content">
@@ -82,42 +81,48 @@
                 <a class="btn btn-ghost text-xl">RoboLab</a>
             </div>
         </div>
+        <div class="grid h-screen place-items-center">
+            <div class=" flex flex-row gap-8 max-w-[90%] min-w-[75%]">
+                <div class="flex basis-1/2 flex-col gap-4">
+                    <div class="output p-4 rounded-2xl" style="background-color: var(--bg-neutral)">
+                        <canvas id="outputWindow"
+                                class="bg-white w-full h-full rounded-2xl aspect-square min-w-[200px] min-h-[200px]"></canvas>
 
-
-        <div class="flex flex-row gap-8 bg-green-500 max-w-[80%]">
-            <div class="flex basis-1/2 flex-col gap-4">
-                <div class="output bg-neutral p-4 rounded-2xl">
-                    <canvas id="outputWindow" class="bg-white w-full h-full rounded-2xl">
-
-                    </canvas>
-                </div>
-                <div class="bg-neutral shadow-lg rounded-2xl p-4">
-                    <div class="chat chat-start">
-                        <div class="chat-bubble bg-primary">
+                        <!--                        <script>-->
+                        <!--                            var c = document.getElementById("outputWindow");-->
+                        <!--                            var ctx = c.getContext("2d");-->
+                        <!--                            ctx.moveTo(0, 0);-->
+                        <!--                            ctx.lineTo(200, 100);-->
+                        <!--                            ctx.stroke();-->
+                        <!--                        </script>-->
+                    </div>
+                    <div class="shadow-lg rounded-2xl p-4" style="background-color: var(--bg-neutral)">
+                        <div class="chat chat-start">
+                            <div class="chat-bubble" style="background-color: var(--bg-primary)">
                     <textarea id="aiChat"
                               class=" bg-transparent textarea select-none h-full w-full resize-none text-black"
                               readonly></textarea>
+                            </div>
+                        </div>
+
+                        <div class="chat chat-end">
+                            <input type="text" id="userChat"
+                                   class="chat-bubble text-black min-w-36"
+                                   placeholder="Type to ask the AI" style="background-color: var(--bg-primary)">
                         </div>
                     </div>
+                </div>
 
-                    <div class="chat chat-end">
-                        <input type="text" id="userChat"
-                               class="chat-bubble bg-primary text-black min-w-36"
-                               placeholder="Type to ask the AI">
-                    </div>
+                <div class="basis-1/2 mockup-window min-w-52" style="background-color: var(--bg-neutral)">
+                    <code-input id="userCode" class="flex-1" language="python"></code-input>
+                    <button class="btn m-4" id="runBtn" style="background-color: var(--bg-primary)">Run Code</button>
                 </div>
             </div>
-
-            <div class="basis-1/2 mockup-window bg-neutral">
-                <code-input id="userCode" class="" language="python"></code-input>
-                <button class="btn btn-primary m-4" id="runBtn">Run Code</button>
-            </div>
-
         </div>
     </div>
     <div class="drawer-side">
         <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
-        <div class="menu bg-secondary min-h-full w-80 p-4">
+        <div class="menu min-h-full w-80 p-4" style="background-color: var(--bg-secondary)">
             <span class="text-xl font-bold">Level</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
@@ -155,15 +160,17 @@
             </div>
             <div class="divider"></div>
             <span class="text-xl font-bold">Theme</span>
-            <select class="select select-bordered w-full max-w-xs bg-secondary">
+            <select data-choose-theme class="select select-bordered w-full max-w-xs"
+                    style="background-color: var(--bg-secondary)">
                 <option selected>Yellow</option>
-                <option>Light</option>
-                <option>Dark</option>
+                <option value="light">Light</option>
+                <option value="dark">Dark</option>
             </select>
         </div>
     </div>
 </div>
 
-<img id = "imgRobot" style = "display:none" src="placeholder.jpg">
 </body>
+<script src="scripts/script.js" type="module"></script>
+<script src="scripts/llmConnection.js" type="module"></script>
 </html>

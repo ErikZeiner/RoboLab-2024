@@ -1,0 +1,16 @@
+:root {
+  --bg-neutral: #fef9c3;
+  --bg-primary: #facc15;
+  --bg-secondary: #eab308;
+  /* or any other variables/style */
+}
+[data-theme='dark'] {
+  --bg-neutral: #757575;
+  --bg-primary: #424242;
+  --bg-secondary: #424242;
+}
+[data-theme='light'] {
+  --bg-neutral: #FAFAFA;
+  --bg-primary: #EEEEEE;
+  --bg-secondary: #E0E0E0;
+}
