@@ -1,15 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html class="h-full" style="background-color: var(--bg-primary)">
 <head>
     <meta charset="UTF-8">
     <title>About</title>
+
+    <link rel="stylesheet" href="styles/output.css">
+    <link rel="stylesheet" href="styles/themes.css">
+    <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
 </head>
 <body>
+<div class="navbar bg-transparent w-full">
+    <div class="flex">
+        <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>
+    </div>
+        <a class="btn btn-ghost text-l" href="index.html">Try the app</a>
+</div>
 
-RoboLab is a final project for "LLMs in Education"
 
-Erik Zeiner
-Sung-Jin Miriam Han
-Daniel Capkan
+    <div class=" py-24 sm:py-32">
+        <div class="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
+            <div class="max-w-2xl">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Meet the team</h2>
+                <p class="mt-6 text-lg leading-8 text-gray-600">RoboLab is a final project for the seminar  "LLMs in
+                    Education", taught in the Summer Semester 2024 at the University of Tübingen.</p>
+            </div>
+            <ul role="list" class="grid gap-x-8 gap-y-12 sm:grid-cols-3 sm:gap-y-16 xl:col-span-2">
+                <li>
+                    <div class="flex items-center gap-x-6">
+                        <div>
+                            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Erik Zeiner</h3>
+                            <p class="text-sm font-semibold leading-6 text-orange-600">Lead Developer</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center gap-x-6">
+                        <div>
+                            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Sung-Jin Miriam Han</h3>
+                            <p class="text-sm font-semibold leading-6 text-orange-600">Prompt Engineer</p>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="flex items-center gap-x-6">
+                        <div>
+                            <h3 class="text-base font-semibold leading-7 tracking-tight text-gray-900">Daniel Capkan</h3>
+                            <p class="text-sm font-semibold leading-6 text-orange-600">Marketing</p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-import { runCode } from './script.js';
+import {runCode} from './script.js';
 
 const def_prompt = 'Your name is RoboAI, you are a personalised AI tutor for a student learning how to program and test robots within a software. This software is called RoboLab, a virtual environment for learning how to program and test robots. This platform will provide various scenarios, such as programming a robot to follow a path surrounded by walls. You are the AI tutor integrated into this software. You are a helpful, encouraging tutor who assists the student.\n' +
     '\n' +
@@ -54,8 +54,13 @@ const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
 
 async function sendRequest(prompt) {
     try {
-        console.log("prompt" + prompt);
-        const result = await model.generateContent(def_prompt + "\n Given all this, answer the following question: " + prompt);
+        let enhancedPrompt = def_prompt +
+            "\n The student in the following educational level, talk to them accordingly: " + document.querySelector('input[name="education"]:checked').value +
+            "\n When giving an answer to the student, " + document.querySelector('input[name="help"]:checked').value +
+            "\n Given all this, answer the following question: " + prompt;
+
+        console.log("enhanced prompt " + enhancedPrompt);
+        const result = await model.generateContent(enhancedPrompt);
         const response = await result.response;
         console.log("response" + response.text());
         const text = response.text();

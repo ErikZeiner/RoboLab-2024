@@ -56,7 +56,8 @@
 
 </head>
 <body>
-<img id="imgRobot" style="display: none" src="https://i.pinimg.com/originals/ff/5d/5e/ff5d5e39d3c8f0e4ad26651d89160e74.png">
+<img id="imgRobot" style="display: none"
+     src="https://i.pinimg.com/originals/ff/5d/5e/ff5d5e39d3c8f0e4ad26651d89160e74.png">
 <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content">
@@ -78,29 +79,30 @@
                 </label>
             </div>
             <div class="flex-1">
-                <a class="btn btn-ghost text-xl">RoboLab</a>
+                <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>
+            </div>
+            <div class="flex-none">
+                <b>Activities:</b>
+                <ul class="menu menu-horizontal px-1">
+                    <li><a>Maze 1</a></li>
+                    <li><a>Maze 2</a></li>
+                    <li><a>Maze 3</a></li>
+                </ul>
             </div>
         </div>
         <div class="grid h-screen place-items-center">
-            <div class=" flex flex-row gap-8 max-w-[90%] min-w-[75%]">
+            <div class=" flex flex-row-2 gap-8 max-w-[90%] min-w-[75%]">
                 <div class="flex basis-1/2 flex-col gap-4">
-                    <div class="output p-4 rounded-2xl" style="background-color: var(--bg-neutral)">
+                    <div class="output p-4 rounded-2xl shadow-lg" style="background-color: var(--bg-neutral)">
                         <canvas id="outputWindow"
                                 class="bg-white w-full h-full rounded-2xl aspect-square min-w-[200px] min-h-[200px]"></canvas>
 
-                        <!--                        <script>-->
-                        <!--                            var c = document.getElementById("outputWindow");-->
-                        <!--                            var ctx = c.getContext("2d");-->
-                        <!--                            ctx.moveTo(0, 0);-->
-                        <!--                            ctx.lineTo(200, 100);-->
-                        <!--                            ctx.stroke();-->
-                        <!--                        </script>-->
                     </div>
                     <div class="shadow-lg rounded-2xl p-4" style="background-color: var(--bg-neutral)">
                         <div class="chat chat-start">
                             <div class="chat-bubble" style="background-color: var(--bg-primary)">
                     <textarea id="aiChat"
-                              class=" bg-transparent textarea select-none h-full w-full resize-none text-black"
+                              class=" bg-transparent textarea select-none h-full w-full resize-none text-black min-h-[150px]"
                               readonly></textarea>
                             </div>
                         </div>
@@ -113,7 +115,7 @@
                     </div>
                 </div>
 
-                <div class="basis-1/2 mockup-window min-w-52" style="background-color: var(--bg-neutral)">
+                <div class="basis-1/2 mockup-window min-w-52 shadow-lg" style="background-color: var(--bg-neutral)">
                     <code-input id="userCode" class="flex-1" language="python"></code-input>
                     <button class="btn m-4" id="runBtn" style="background-color: var(--bg-primary)">Run Code</button>
                 </div>
@@ -127,35 +129,35 @@
             <div class="form-control">
                 <label class="label cursor-pointer">
                     <span class="label-text">Primary School</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <input type="radio" name="education" value="Primary School" class="radio" checked="checked"/>
                 </label>
                 <label class="label cursor-pointer">
                     <span class="label-text">Secondary School</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <input type="radio" name="education" value="Secondary school" class="radio"/>
                 </label>
                 <label class="label cursor-pointer">
                     <span class="label-text">High School</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <input type="radio" name="education" value="High School" class="radio"/>
                 </label>
                 <label class="label cursor-pointer">
                     <span class="label-text">University</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <input type="radio" name="education" value="University" class="radio"/>
                 </label>
             </div>
             <div class="divider"></div>
             <span class="text-xl font-bold">RoboAI Helpfullness</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
-                    <span class="label-text">A lot of help</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <span class="label-text">Give a lot of help</span>
+                    <input type="radio" name="help" value="Give a lot of help" class="radio" checked="checked"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">Only little hints</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <span class="label-text">Give only little hints</span>
+                    <input type="radio" name="help" value="Give only little hints" class="radio"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">Straight up unhelpfull</span>
-                    <input type="radio" name="radio-10" class="radio" checked="checked"/>
+                    <span class="label-text">Be straight up unhelpful</span>
+                    <input type="radio" name="help" value="Be straight up unhelpful" class="radio"/>
                 </label>
             </div>
             <div class="divider"></div>
