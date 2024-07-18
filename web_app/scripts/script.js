@@ -3,58 +3,63 @@ import Robot from './Robot.js';
 
 let canvas = document.getElementById('outputWindow');
 let ctx = canvas.getContext('2d');
-let looper;
+ctx.lineWidth = 2;
+let robot;
+let lastTime = 0;
+let path;
 
-function chooseLevel() {
-    let level1 = [
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-    ]
+function drawPath(pathPoints) {
+    let first = true;
+    pathPoints.forEach(pathPoint => {
+        if (first) {
+            ctx.beginPath();
+            ctx.moveTo(pathPoint[0], pathPoint[1]);
+            first = false;
+        }
+        ctx.lineTo(pathPoint[0], pathPoint[1]);
+    })
+    ctx.stroke();
 }
 
-
-let robot = new Robot(canvas.width, canvas.height, 0, 0);
-
-
-let lastTime = 0;
 
 function loop(timestamp) {
     let deltaTime = (timestamp - lastTime);
     lastTime = timestamp;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.beginPath();
-    robot.update(ctx, deltaTime);
+    robot.update(ctx, deltaTime, path);
+    drawPath(path);
     robot.draw(ctx);
-    window.requestAnimationFrame(loop);
-    // if (robot.queue.length == 0){
-    //     stopAnimation();
-    // }
+    if (!robot.isDoneMoving()) {
+        window.requestAnimationFrame(loop);
+
+        if(robot.checkFinalPosition(path)){
+            alert("finished");
+        };
+    }
 }
 
-
-
-function stopAnimation(){
-    if(looper){
-        window.cancelAnimationFrame(looper);
-        looper = undefined;
-    }
+window.onload = function () {
+    reset();
+    path = [[10, 10], [100, 10], [100, 100]];
+    drawPath(path);
+    robot.draw(ctx);
 }
 
 function getNumberFromLine(str) {
     return parseInt(str.replace(/[^0-9]/g, ''), 10);
 }
 
-export function runCode(code) {
+function reset() {
+    robot = new Robot(canvas.width, canvas.height, 0, 0);
+    console.log("reset robot");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    robot.draw(ctx);
+}
 
-    let ctx = canvas.getContext('2d');
+
+export function runCode(code) {
+    reset();
+
     let queue = [];
     code.split('\n').forEach(line => {
         if (line.includes('Left')) {
@@ -67,7 +72,8 @@ export function runCode(code) {
             queue.push({x: robot.position.x, y: -getNumberFromLine(line)});
         }
     });
-    console.log(queue);
+    // console.log(queue);
     robot.queue = queue;
     loop();
 }
+

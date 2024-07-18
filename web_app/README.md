@@ -1,45 +1,16 @@
 # TODO
 
-- [ ] menu with more settings
-- [ ] regex for matching users input
-- [ ] pygame visualisation
-- [ ] table for checking validity
-- [ ] user usable methods doing visualisation and validity
-
-- [ ] run code if valid basically starts the game, the game runs through the commands
-- moving one thing could be pressing the key for a time needed for the robot to move
-- keep array with the gameboard and also rescale for the display path
-- by giving instructions to which cell in the board to move - rescaling gives final place for the game to move
-
 - language/difficulty level
 - prompt with difficulty and personality
 - write up what it can and what it could do.
 - check on the template license
 
-run input against a python regex, if it passes that 
-
-check
-and visualisation on two layers
-one simulates cursor movements allowing me to use pygame
-one that check against a table representation of the maze
-
-- map backend
-- map visualisation
-- regex to match users code and 
-- more ui to look more done, options and such
-- read prompt from file
+ 
+Check if a given bubble of the player exits the line as it moves
+At the end check if arrived at goal
 
 
-
-
-set a target, if target is not reached move to the target. Target is offset by the commands form the user and the robot just follows
-
-
-
-
-
-
-# Notes
+# Resources
 - text editor - https://github.com/WebCoder49/code-input
 - https://ai.google.dev/gemini-api/docs/quickstart?lang=python
 Because standard does not work in Germany

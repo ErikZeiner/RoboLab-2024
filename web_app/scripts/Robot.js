@@ -2,11 +2,12 @@ export default class Robot {
     constructor(windowSizeX, windowSizeY, locationX, locationY) {
         this.image = document.getElementById('imgRobot');
         this.target = {x: locationX, y: locationY}
-        this.position = {x: locationX, y: locationY};
-        this.speed = 5;
-        this.scale = 5;
+
+        this.speed = 20;
+        this.scale = 6;
         this.sizeX = windowSizeX / this.scale;
         this.sizeY = windowSizeY / this.scale;
+        this.position = {x: locationX, y: locationY};
         this.queue = [];
     }
 
@@ -15,27 +16,50 @@ export default class Robot {
 
     }
 
-    moveTargetX(x){
-        this.target.x = x;
-        return Math.abs(this.target.x-this.position.x)/this.speed;
-    }
-     moveTargetY(y){
-        this.target.y = y;
-        return Math.abs(this.target.y-this.position.y)/this.speed;
-    }
+    checkOnLine(pathLine) {
+        let a = (pathLine[0][1] - pathLine[0][0]) / (pathLine[1][1] - pathLine[1][0]);
+        let b = pathLine[0][0] - a * pathLine[1][0];
 
-    update(ctx, deltaTime) {
-        if (!deltaTime) return;
-        console.log(this.queue);
+        for (let i = 0; i < this.sizeX; i++) {
+            for (let j = 0; j < this.sizeY; j++) {
+                let x = this.position.x + i;
+                let y = this.position.y + j;
 
-        if (this.queue.length === 0) {
-            clearInterval(gameLoopInterval);
+                if (Math.abs(y - (a * x + b)) <= 1) {
+                    if (x >= pathLine[0][0] && x <= pathLine[1][0] && y >= pathLine[0][1] && y <= pathLine[1][1]) {
+                        return true;
+                    }
+                }
+            }
         }
+        return false;
+    }
 
-        if (this.position.x == this.target.x && this.position.y == this.target.y){
+    checkOnPath(path) {
+        for (let i = 1; i < path.length; i++) {
+            if (this.checkOnLine([path[i - 1], path[i]])) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    isDoneMoving() {
+        return Math.round(this.position.x) == this.target.x && Math.round(this.position.y) == this.target.y && this.queue.length == 0;
+    }
+
+    checkFinalPosition(path) {
+        let end = path.at(-1);
+        return (end[0] >= this.position.x && end[0] <= this.position.x + this.sizeX && end[1] >= this.position.y && end[1] <= this.position.y + this.sizeY);
+    }
+
+    update(ctx, deltaTime, path) {
+        if (!deltaTime) return;
+
+        if (Math.round(this.position.x) == this.target.x && Math.round(this.position.y) == this.target.y) {
             let newPosition = this.queue.shift();
-            this.target.x = newPosition.x;
-            this.target.y = newPosition.y;
+            this.target.x += newPosition.x * 25;
+            this.target.y += newPosition.y * 20;
         }
 
         if (this.position.x < this.target.x) {
@@ -50,6 +74,7 @@ export default class Robot {
         if (this.position.y > this.target.y) {
             this.position.y -= this.speed / deltaTime;
         }
+        console.log(this.checkOnPath(path));
 
     }
 }

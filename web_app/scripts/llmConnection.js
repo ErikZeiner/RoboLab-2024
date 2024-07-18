@@ -65,17 +65,18 @@ async function sendRequest(prompt) {
         console.log("response" + response.text());
         const text = response.text();
         return text;
+
     } catch (e) {
         document.getElementById('aiChat').value = "Sorry, I can't help you with that.";
     }
 }
 
 function testCode(text) {
-
-    let regex = /(^move(Right|Left|Up|Down|)\(([0-9]{1,2})\)$\n?)+/gm;
+    let regex = /(^move(Right|Left|Up|Down|)\(([0-9]{1,2})\)$\n?)+/m;
     console.log(text + "---" + text.match(regex));
-    return regex.test(text);
-
+    if (text.match(regex) == null) return false;
+    else if (text.match(regex)[0].length == text.length) return true;
+    else return false;
 }
 
 document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
@@ -86,10 +87,7 @@ document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
 })
 
 document.getElementById('runBtn').onclick = async () => {
-
-    console.log('runCode');
     if (testCode(document.getElementById('userCode').value)) {
-        console.log('runCode');
         document.getElementById('aiChat').value = "Your code looks correct. Let's see if achieves the task!";
         runCode(document.getElementById('userCode').value);
     } else {
