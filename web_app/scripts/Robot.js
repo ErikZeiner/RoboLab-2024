@@ -2,7 +2,7 @@ export default class Robot {
     constructor(windowSizeX, windowSizeY, locationX, locationY) {
         this.image = document.getElementById('imgRobot');
         this.target = {x: locationX, y: locationY}
-        this.speed = 20;
+        this.speed = 25;
         this.scale = 7;
         this.sizeX = windowSizeX / this.scale;
         this.sizeY = windowSizeY / this.scale;
@@ -99,7 +99,7 @@ export default class Robot {
             check = check || this.doIntersect({
                 x: this.position.x + this.sizeX,
                 y: this.position.y + this.sizeY
-            }, {x: this.position.x , y: this.position.y + this.sizeY}, {
+            }, {x: this.position.x, y: this.position.y + this.sizeY}, {
                 x: path[i - 1][0],
                 y: path[i - 1][1]
             }, {x: path[i][0], y: path[i][1]});
@@ -128,10 +128,10 @@ export default class Robot {
     update(ctx, deltaTime, path) {
 
         if (!deltaTime) return;
-        if (Math.abs(this.position.x - this.target.x) < 1 && Math.abs(this.position.y - this.target.y) < 1 && this.queue.length > 0) {
+        if (Math.abs(this.position.x - this.target.x) < 2 && Math.abs(this.position.y - this.target.y) < 2 && this.queue.length > 0) {
             let newPosition = this.queue.shift();
             this.target.x += newPosition.x * 25;
-            this.target.y += newPosition.y * 20;
+            this.target.y += newPosition.y * 25;
         }
         if (this.position.x < this.target.x) {
             this.position.x += this.speed / deltaTime;
@@ -145,7 +145,7 @@ export default class Robot {
         if (this.position.y > this.target.y) {
             this.position.y -= this.speed / deltaTime;
         }
-        if (this.keptOnLine){
+        if (this.keptOnLine) {
             this.keptOnLine = this.checkOnPath(path);
         }
     }
