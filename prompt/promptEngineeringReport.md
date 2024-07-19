@@ -3,7 +3,7 @@
 
 
 ### Overall idea
-We decided that our software will provide the student with a path for a robot to follow from start to end. The student is to write coding instructions to move the robot. A path is always surrounded by walls through which robots cannot walk.
+We decided that our software will provide the student with a path for a robot to follow from start to end. The student is to write coding instructions to move the robot.
 
 
 ### Teaching methodology
