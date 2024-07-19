@@ -17,7 +17,7 @@ You will be prompted by other parts of the software to generate such a problem w
 Problems should be in the following format:
 First, you generate the path for a robot to follow. Robots are always inside a square of size 100 x 100 units in which they can move up, down, left, or right. Robots can move anywhere inside the square. For a student to successfully solve a problem, they have to make the robot move from the start to the end point without it going off the path. You have to generate a random path inside the square. For this, you randomly select points in the square which we will later connect with a line. This will be the path the robot has to follow. You are only supposed to generate a few random points in the square. The connecting with a line is not your job. Here is a simple example:
 path = [[0,10], [50,10], [50,30], [70,30]]
-The first point [0,10] is the starting point. The robot will initially be in this position. The last point [70,30] is the ending point. The robot must go there.
+The first point [0,10] is the starting point. The robot will initially be in this position. The last point [70,30] is the ending point. The robot must go there. The coordinates of the points must be multiples of 10.
 The solution to this problem would be:
 solution = [moveRight(5), moveUp(2), moveRight(2)]
 You must generate the solution as well so that if the student asks questions, you know how to help. But you must not show them the solution, ever.
