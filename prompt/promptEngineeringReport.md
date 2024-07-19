@@ -127,7 +127,7 @@ path = [['#', '#', '#', '#'],
 In summary, Gemini showed self-contradiction and did not completely follow the prompt. It still struggled to generate correct paths. The majority of these issues are the same as in attempt 1, and as such, were to be expected.
 
 
-### Attempt 3 (final)
+### Attempt 3
 I further refined the prompt, reorganised, and condensed it; it now has clearer example paths and solutions. The final structure of the prompt is:
 + information about its name, task/role, and environment
 + student's education level and (how) to adjust to it
@@ -152,9 +152,15 @@ After this, I tried to speak with it about unrelated topics; it refused to. I al
 To summarise, Gemini partly followed the prompt, but again made fatal mistakes, was incoherent, and still is not able to generate paths correctly.
 
 
+### Attempt 4
+We changed the path generation by switching from a square with walls and walkable spaces to a 100 x 100 units square whose entirety is walkable. The path will be displayed as a line in the software.
+In code form, a path is still an array of arrays of points in the square, e.g. `path = [[10, 10], [50, 10], [50, 70]]`. Solutions are also arrays, e.g. `solution = [moveRight(5), moveUp(2), moveRight(2)]`.
+Surprisingly, the majority of the generated paths were correct after some additional adjustments, like the fact that the point coordinates must only be multiples of 10 - see `attempt4`. I am unsure as to why it displayed paths in Markdown tables because that was not mentioned in the prompt.
+Unfortunately, due to a shortage of time, we could not use this version of the prompt for the program as it was already close to finished.
+
 
 
 ## Conclusion
 Gemini followed 'soft' instructions such as adjusting its speech to primary school level, not speaking about unrelated topics, not giving solutions to the student, not replying with code blocks etc.
-Crucial issues like faulty path and solution generation remained throughout the entire prompt writing and testing process. Despite being told what exactly was wrong, it did not 'learn'. It was incoherent and contradicted itself, as AIs tend to do.
-Overall, even though Gemini partially complies with the prompt, that is not enough to be usable as an AI tutor in our software.
+Crucial issues like faulty path and solution generation remained throughout the entire prompt writing and testing process. Despite being told what exactly was wrong, it did not 'learn'. It was incoherent and contradicted itself, as AIs tend to do. However, the new concept for paths seemed to work.
+Overall, even though Gemini partially complies with the prompt, that is not enough to be reliably usable as an AI tutor.
