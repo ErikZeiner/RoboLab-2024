@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="h-full" style="background-color: var(--bg-primary)">
+<html class="h-full" style="background-color: var(--bg-primary); color: var(--text-main);">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -105,7 +105,7 @@
                         <div class="chat chat-start">
                             <div class="chat-bubble" style="background-color: var(--bg-primary)">
                     <textarea id="aiChat"
-                              class=" bg-transparent textarea select-none h-full w-full resize-none text-black min-h-[150px]"
+                              class=" bg-transparent textarea select-none h-full w-full resize-none min-h-[150px]" style="color: var(--text-secondary);"
                               readonly></textarea>
                             </div>
                         </div>
@@ -113,14 +113,14 @@
                         <div class="chat chat-end">
                             <input type="text" id="userChat"
                                    class="chat-bubble text-black min-w-36"
-                                   placeholder="Type to ask the AI" style="background-color: var(--bg-primary)">
+                                   placeholder="Type to ask RoboAI" style="background-color: var(--bg-primary); color: var(--text-secondary);">
                         </div>
                     </div>
                 </div>
 
                 <div class="basis-1/2 mockup-window min-w-52 shadow-lg" style="background-color: var(--bg-neutral)">
                     <code-input id="userCode" class="flex-1" language="python"></code-input>
-                    <button class="btn m-4" id="runBtn" style="background-color: var(--bg-primary)">Run Code</button>
+                    <button class="btn m-4" id="runBtn" style="background-color: var(--bg-primary); color: var(--text-secondary);">Run Code</button>
                 </div>
             </div>
         </div>
@@ -131,19 +131,15 @@
             <span class="text-xl font-bold">Level</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
-                    <span class="label-text">Primary School</span>
+                    <span class="label-text" style="color: var(--text-secondary)">Primary School</span>
                     <input type="radio" name="education" value="Primary School" class="radio" checked="checked"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">Secondary School</span>
-                    <input type="radio" name="education" value="Secondary school" class="radio"/>
-                </label>
-                <label class="label cursor-pointer">
-                    <span class="label-text">High School</span>
+                    <span class="label-text"  style="color: var(--text-secondary)">High School</span>
                     <input type="radio" name="education" value="High School" class="radio"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">University</span>
+                    <span class="label-text"  style="color: var(--text-secondary)">University</span>
                     <input type="radio" name="education" value="University" class="radio"/>
                 </label>
             </div>
@@ -151,15 +147,15 @@
             <span class="text-xl font-bold">RoboAI Helpfullness</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
-                    <span class="label-text">Give a lot of help</span>
+                    <span class="label-text"  style="color: var(--text-secondary)">Give a lot of help</span>
                     <input type="radio" name="help" value="Give a lot of help" class="radio" checked="checked"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">Give only little hints</span>
+                    <span class="label-text"  style="color: var(--text-secondary)">Give only little hints</span>
                     <input type="radio" name="help" value="Give only little hints" class="radio"/>
                 </label>
                 <label class="label cursor-pointer">
-                    <span class="label-text">Be straight up unhelpful</span>
+                    <span class="label-text"  style="color: var(--text-secondary)">Be straight up unhelpful</span>
                     <input type="radio" name="help" value="Be straight up unhelpful" class="radio"/>
                 </label>
             </div>
@@ -168,8 +164,10 @@
             <select data-choose-theme class="select select-bordered w-full max-w-xs"
                     style="background-color: var(--bg-secondary)">
                 <option selected>Yellow</option>
+                <option value="blue">Blue</option>
                 <option value="light">Light</option>
                 <option value="dark">Dark</option>
+                 <option value="spt">Spt</option>
             </select>
         </div>
     </div>

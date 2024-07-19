@@ -1,13 +1,14 @@
 # TODO
 
+- [ ] sync prompt in the code with poster and txt
+- [ ] finish with ai
+- [ ] make mazes
+- [ ] join mazes to buttons
+
 - language/difficulty level
 - prompt with difficulty and personality
 - write up what it can and what it could do.
-- check on the template license
 
- 
-Check if a given bubble of the player exits the line as it moves
-At the end check if arrived at goal
 
 
 # Resources

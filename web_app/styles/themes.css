@@ -2,15 +2,35 @@
   --bg-neutral: #fef9c3;
   --bg-primary: #facc15;
   --bg-secondary: #eab308;
+  --text-main: #000;
+  --text-secondary: #373737;
   /* or any other variables/style */
 }
 [data-theme='dark'] {
   --bg-neutral: #757575;
   --bg-primary: #424242;
   --bg-secondary: #424242;
+  --text-main: #fff;
+  --text-secondary: #dcdcdc;
 }
 [data-theme='light'] {
   --bg-neutral: #FAFAFA;
   --bg-primary: #EEEEEE;
   --bg-secondary: #E0E0E0;
+  --text-main: #000;
+  --text-secondary: #373737;
+}
+[data-theme='blue'] {
+  --bg-neutral: #e2edf9;
+  --bg-primary: #afd6fd;
+  --bg-secondary: #82b4f7;
+  --text-main: #000;
+  --text-w: #373737;
+}
+[data-theme='spt'] {
+  --bg-neutral: #f8fb4a;
+  --bg-primary: #664bfa;
+  --bg-secondary: #543fcc;
+  --text-main: #fff;
+  --text-secondary: #dcdcdc;
 }

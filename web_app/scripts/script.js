@@ -8,6 +8,7 @@ let robot;
 let lastTime = 0;
 let path;
 
+
 function drawPath(pathPoints) {
     let first = true;
     pathPoints.forEach(pathPoint => {
@@ -21,6 +22,7 @@ function drawPath(pathPoints) {
     ctx.stroke();
 }
 
+let requestID = null;
 
 function loop(timestamp) {
     let deltaTime = (timestamp - lastTime);
@@ -30,17 +32,23 @@ function loop(timestamp) {
     drawPath(path);
     robot.draw(ctx);
     if (!robot.isDoneMoving()) {
-        window.requestAnimationFrame(loop);
+        requestID = window.requestAnimationFrame(loop);
+        console.log("kept on line " + robot.keptOnLine + " got to the end " + robot.checkFinalPosition(path));
+        if (robot.checkFinalPosition(path) && robot.keptOnLine) {
+            document.getElementById('aiChat').value = "Success, you got the robot to the end!";
+        } else if (robot.checkFinalPosition(path) && !robot.keptOnLine) {
+            document.getElementById('aiChat').value = "The robot got to the end but it didn't follow the line!";
+        }
 
-        if(robot.checkFinalPosition(path)){
-            alert("finished");
-        };
+    } else {
+        window.cancelAnimationFrame(requestID);
     }
 }
 
 window.onload = function () {
     reset();
-    path = [[10, 10], [100, 10], [100, 100]];
+
+    path = [[10, 10], [98, 10], [98, 96], [150, 96]];
     drawPath(path);
     robot.draw(ctx);
 }
@@ -51,11 +59,9 @@ function getNumberFromLine(str) {
 
 function reset() {
     robot = new Robot(canvas.width, canvas.height, 0, 0);
-    console.log("reset robot");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     robot.draw(ctx);
 }
-
 
 export function runCode(code) {
     reset();
@@ -72,7 +78,7 @@ export function runCode(code) {
             queue.push({x: robot.position.x, y: -getNumberFromLine(line)});
         }
     });
-    // console.log(queue);
+
     robot.queue = queue;
     loop();
 }
