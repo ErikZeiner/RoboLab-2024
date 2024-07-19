@@ -2,10 +2,6 @@
 
 RoboLab is a final project for Hauptseminar "LLMs in Education" held in the Summer Semester 2024 at the University of Tübingen.
 
-
-environment that would allow to code instructions for a robot, which would execute the commands in some sort of a visualisation
-for young children (our demo; few code options) -> for older students (make visualisations for that)
-
 <h2 class="text-xl font-bold tracking-tight">How was RoboLab built?</h2>
             <p class="mt-6 text-lg leading-8" style="color: var(--text-secondary);">
                 The main functionality was built using JavaScript. The site design was done using <a
