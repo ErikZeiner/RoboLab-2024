@@ -15,22 +15,31 @@ let requestID = null;
 // Deal with image rescaling issue
 const dpr = window.devicePixelRatio;
 const rect = canvas.getBoundingClientRect();
-canvas.width = rect.width * dpr;
-canvas.height = rect.height * dpr;
-ctx.scale(dpr*2, dpr*2);
+
+if (dpr == 1) {
+    canvas.width = rect.width * dpr;
+    canvas.height = rect.height * dpr;
+    ctx.scale(dpr * 2, dpr * 2);
+}
+if (dpr == 2) {
+    canvas.width = rect.width * dpr / 2;
+    canvas.height = rect.height * dpr / 2;
+    ctx.scale(dpr * 1, dpr * 1);
+}
+
 
 // Draw lines for the given level
 function loadLevel(num) {
     reset();
     switch (num) {
         case 1:
-            path = [[10, 35], [123, 35], [123, 230]];
+            path = [[10, 30], [123, 30], [123, 230]];
             break;
         case 2:
-            path = [[10, 35], [75, 35], [75, 235], [150, 235], [150, 130], [174, 130], [174, 40]];
+            path = [[10, 30], [70, 30], [70, 230], [145, 230], [145, 125], [170, 125], [170, 35]];
             break;
         case 3:
-            path = [[10, 35], [124, 35], [124, 85], [90, 85], [90, 155], [173, 155], [173, 53], [220, 53], [220, 240]];
+            path = [[10, 30], [120, 30], [120, 80], [85, 80], [85, 150], [170, 150], [170, 50], [215, 50], [215, 235]];
             break;
         default:
             path = [];
