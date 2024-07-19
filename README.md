@@ -1,21 +1,21 @@
-# llms_in_education_project
+# RoboLab: Learn How to Code via Virtual Robotics Programming
 
-## Virtual robotics programming
+RoboLab is a final project for Hauptseminar "LLMs in Education" held in the Summer Semester 2024 at the University of Tübingen.
 
 
 environment that would allow to code instructions for a robot, which would execute the commands in some sort of a visualisation
 for young children (our demo; few code options) -> for older students (make visualisations for that)
 
-### AI use
-
-- create a prompt that would guide the student (prompt language level etc. depending on user age)
-- write the code for the student from plain language instructions?
-- generate features for the robot - maze structures and such
-- follow the path instead of maze?
-- personality settings
-
-### Tech
-
-- UI - python 
-- interpreter of the instructions - python
-- LLM - gemini has a free api access
+<h2 class="text-xl font-bold tracking-tight">How was RoboLab built?</h2>
+            <p class="mt-6 text-lg leading-8" style="color: var(--text-secondary);">
+                The main functionality was built using JavaScript. The site design was done using <a
+                    href="https://tailwindcss.com">Tailwind</a> with an additional package called <a
+                    href="https://daisyui.com">DaisyUI</a> and theming was achieved using <a
+                    href="https://github.com/saadeghi/theme-change">CSS Theme Change</a>.
+                I also used <a href="https://github.com/WebCoder49/code-input">code-input</a> for IDE-like user window.
+                Robot
+                icon created by <a
+                    href="https://www.flaticon.com/free-icons/robot" title="robot icons">Freepik - Flaticon</a>.
+                <b>This website was built without any AI-generated code!</b>
+                <!-- We rule the LLMs; we are not reliant on them.-->
+            <p>- Erik</p>
