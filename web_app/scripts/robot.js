@@ -5,7 +5,7 @@ export default class Robot {
         this.image = document.getElementById('imgRobot');
         this.target = {x: locationX, y: locationY}
         this.speed = 25;
-        this.scale = 7; // for robot size
+        this.scale = 16; // for robot size
         this.sizeX = windowSizeX / this.scale;
         this.sizeY = windowSizeY / this.scale;
         this.position = {x: locationX, y: locationY};

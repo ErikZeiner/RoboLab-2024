@@ -17,13 +17,14 @@ const dpr = window.devicePixelRatio;
 const rect = canvas.getBoundingClientRect();
 canvas.width = rect.width * dpr;
 canvas.height = rect.height * dpr;
+ctx.scale(dpr*2, dpr*2);
 
 // Draw lines for the given level
 function loadLevel(num) {
     reset();
     switch (num) {
         case 1:
-            path = [[10, 35], [124, 35], [124, 230]];
+            path = [[10, 35], [123, 35], [123, 230]];
             break;
         case 2:
             path = [[10, 35], [75, 35], [75, 235], [150, 235], [150, 130], [174, 130], [174, 40]];
@@ -100,6 +101,8 @@ export function runCode(code) {
     });
     // Give the robot where to go and run the animation
     robot.queue = queue;
+
+
     loop();
 }
 
