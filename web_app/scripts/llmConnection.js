@@ -1,5 +1,14 @@
-import {runCode} from './script.js';
+// @author: Erik Zeiner
 
+import {runCode} from './script.js';
+import {config} from './config.js';
+import {GoogleGenerativeAI} from "@google/generative-ai";
+
+// API setup
+const genAI = new GoogleGenerativeAI(config.KEY);
+const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
+
+// Base prompt
 const def_prompt = 'Your name is RoboAI, you are a personalised AI tutor for a student learning how to program and test robots within a software. This software is called RoboLab, a virtual environment for learning how to program and test robots. This platform will provide various scenarios, such as programming a robot to follow a path surrounded by walls. You are the AI tutor integrated into this software. You are a helpful, encouraging tutor who assists the student.\n' +
     '\n' +
     '\n' +
@@ -26,44 +35,39 @@ const def_prompt = 'Your name is RoboAI, you are a personalised AI tutor for a s
     'Do not invent random things like there being a blue point at the start and a yellow start at the end of the path. The path will only be displayed as a black line in the program.\n' +
     'Problems for high school and university students should contain more points, i.e. a more complicated path to navigate. The points should still be multiples of 10. Everything I said about paths holds for all education levels.\n'
 
-import {GoogleGenerativeAI} from "@google/generative-ai";
+// Communication with AI
 
-// Fetch your API_KEY
-const API_KEY = "AIzaSyB1eqX5raYM4CmkVP044nkU6Dp9KqDIALM";
-
-// Access your API key (see "Set up your API key" above)
-const genAI = new GoogleGenerativeAI(API_KEY);
-
-// The Gemini 1.5 models are versatile and work with most use cases
-const model = genAI.getGenerativeModel({model: "gemini-1.5-flash"});
 
 async function sendRequest(prompt) {
     try {
+        // Add settings to the prompt
         let enhancedPrompt = def_prompt +
             "The student is in the following educational level, talk to them accordingly: " + document.querySelector('input[name="education"]:checked').value +
             "\nWhen giving an answer to the student, " + document.querySelector('input[name="help"]:checked').value +
             "\nGiven all this, answer the following question: " + prompt;
-
-        console.log("enhanced prompt " + enhancedPrompt);
+        // Talk to Gemini
         const result = await model.generateContent(enhancedPrompt);
         const response = await result.response;
-        console.log("response" + response.text());
-        const text = response.text();
-        return text;
+        return response.text();
 
     } catch (e) {
         document.getElementById('aiChat').value = "Sorry, I can't help you with that.";
     }
 }
 
+// Make sure user code is valid to what we want
 function testCode(text) {
     let regex = /(^move(Right|Left|Up|Down|)\(([0-9]{1,2})\)$\n?)+/m;
-    console.log(text + "---" + text.match(regex));
-    if (text.match(regex) == null) return false;
+
+    if (text.match(regex) == null)return false;
     else if (text.match(regex)[0].length == text.length) return true;
     else return false;
 }
 
+// Interface UI and AI
+
+
+// Send message from the user
 document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
     if (key === "Enter") {
         document.getElementById('aiChat').value = "Hmm, let me think...";
@@ -71,6 +75,7 @@ document.getElementById("userChat").addEventListener("keyup", async ({key}) => {
     }
 })
 
+// Run button
 document.getElementById('runBtn').onclick = async () => {
     if (testCode(document.getElementById('userCode').value)) {
         document.getElementById('aiChat').value = "Your code looks correct. Let's see if achieves the task!";
@@ -81,6 +86,7 @@ document.getElementById('runBtn').onclick = async () => {
     }
 }
 
+// Default message on load
 window.addEventListener('load', function () {
     document.getElementById('aiChat').value = "Try writing some code! I am here if you need me.";
 })

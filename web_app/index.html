@@ -2,13 +2,15 @@
 <html class="h-full" style="background-color: var(--bg-primary); color: var(--text-main);">
 <head>
     <meta charset="UTF-8">
+    <Title>RoboLab</Title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
+    <meta name="keywords" content="Robotics, LLM, Programming, AI">
+    <meta name="author" content="Erik Zeiner">
+    <!-- Main stylesheets -->
     <link rel="stylesheet" href="styles/output.css">
     <link rel="stylesheet" href="styles/themes.css">
 
     <script src="https://cdn.jsdelivr.net/npm/theme-change@2.0.2/index.js"></script>
-
     <!--Import highlight.js-->
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/a11y-light.min.css">
@@ -37,45 +39,42 @@
     <script src="scripts/script.js" type="module"></script>
 </head>
 <body>
+<!--Hidden image to be used in canvas-->
 <img id="imgRobot" style="display: none" src="https://greenscreen.cz/roboLab/robot.png">
+<!--Main-->
 <div class="drawer">
     <input id="my-drawer-3" type="checkbox" class="drawer-toggle"/>
     <div class="drawer-content">
         <!-- Navbar -->
         <div class="navbar w-full">
             <div class="flex-none">
+                <!--Button for the drawer-->
                 <label for="my-drawer-3" aria-label="open sidebar" class="btn btn-square btn-ghost">
-                    <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            class="inline-block h-6 w-6 stroke-current">
-                        <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M4 6h16M4 12h16M4 18h16"></path>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                         class="inline-block h-6 w-6 stroke-current">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M4 6h16M4 12h16M4 18h16"></path>
                     </svg>
                 </label>
             </div>
+            <!--Name-->
             <div class="flex-1">
                 <a class="btn btn-ghost text-xl" href="about.html">RoboLab</a>
             </div>
+            <!--Menu-->
             <div class="flex-none">
                 <b>Activities:</b>
-
                 <ul class="menu menu-horizontal px-1" style="z-index:2;">
                     <li>
                         <details>
                             <summary>Follow a Line</summary>
                             <ul class="p-2" style="background-color: var(--bg-secondary)">
-                                <li><a href = "#" id="level1select">Level 1</a></li>
-                                <li><a href = "#" id="level2select">Level 2</a></li>
-                                <li><a href = "#" id="level3select">Level 3</a></li>
+                                <li><a href="#" id="level1select">Level 1</a></li>
+                                <li><a href="#" id="level2select">Level 2</a></li>
+                                <li><a href="#" id="level3select">Level 3</a></li>
                             </ul>
                         </details>
                     </li>
-
                     <div class="indicator">
                         <span class="indicator-item indicator-center badge badge-primary">Coming soon</span>
                         <li>
@@ -95,16 +94,16 @@
                 </ul>
             </div>
         </div>
-
+        <!--Content-->
         <div class="grid h-screen place-items-center">
             <div class=" flex flex-row-2 gap-8 -mt-28 min-w-[65%]">
                 <div class="flex basis-1/2 flex-col gap-4">
+                    <!--Output window for the robot to move in-->
                     <div class="output p-4 rounded-2xl shadow-lg" style="background-color: var(--bg-neutral)">
-
                         <canvas id="outputWindow"
                                 class="bg-white w-full h-full rounded-2xl aspect-square min-w-[200px] min-h-[200px]"></canvas>
-
                     </div>
+                    <!--Chat with AI-->
                     <div class="shadow-lg rounded-2xl p-4" style="background-color: var(--bg-neutral)">
                         <div class="chat chat-start">
                             <div class="chat-bubble" style="background-color: var(--bg-primary)">
@@ -122,7 +121,7 @@
                         </div>
                     </div>
                 </div>
-
+                <!--User code window-->
                 <div class="flex-1 mockup-window min-w-52 shadow-lg"
                      style="background-color: var(--bg-neutral); z-index:0;">
                     <code-input id="userCode" class="flex-1" language="python"></code-input>
@@ -133,9 +132,11 @@
             </div>
         </div>
     </div>
+    <!--Settings in a hidden drawer-->
     <div class="drawer-side">
         <label for="my-drawer-3" aria-label="close sidebar" class="drawer-overlay"></label>
         <div class="menu min-h-full w-80 p-4" style="background-color: var(--bg-secondary)">
+
             <span class="text-xl font-bold">Level</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
@@ -151,8 +152,10 @@
                     <input type="radio" name="education" value="University" class="radio"/>
                 </label>
             </div>
+
             <div class="divider"></div>
-            <span class="text-xl font-bold">RoboAI Helpfullness</span>
+
+            <span class="text-xl font-bold">RoboAI Helpfulness</span>
             <div class="form-control">
                 <label class="label cursor-pointer">
                     <span class="label-text" style="color: var(--text-secondary)">Give a lot of help</span>
@@ -167,7 +170,9 @@
                     <input type="radio" name="help" value="Be straight up unhelpful" class="radio"/>
                 </label>
             </div>
+
             <div class="divider"></div>
+
             <span class="text-xl font-bold">Theme</span>
             <select data-choose-theme class="select select-bordered w-full max-w-xs"
                     style="background-color: var(--bg-secondary)">

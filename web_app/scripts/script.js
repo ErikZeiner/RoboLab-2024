@@ -1,58 +1,24 @@
 // @author: Erik Zeiner
-import Robot from './Robot.js';
 
+import Robot from './robot.js';
+
+// setup variables
 let canvas = document.getElementById('outputWindow');
 let ctx = canvas.getContext('2d');
 ctx.lineWidth = 2;
-let robot;
+let robot = null;
 let lastTime = 0;
-let path;
+let path = [];
+let requestID = null;
 
 
+// Deal with image rescaling issue
 const dpr = window.devicePixelRatio;
 const rect = canvas.getBoundingClientRect();
-
-// Set the "actual" size of the canvas
 canvas.width = rect.width * dpr;
 canvas.height = rect.height * dpr;
 
-function drawPath(pathPoints) {
-    let first = true;
-    pathPoints.forEach(pathPoint => {
-        if (first) {
-            ctx.beginPath();
-            ctx.moveTo(pathPoint[0], pathPoint[1]);
-            first = false;
-        }
-        ctx.lineTo(pathPoint[0], pathPoint[1]);
-    })
-    ctx.stroke();
-}
-
-let requestID = null;
-
-function loop(timestamp) {
-    let deltaTime = (timestamp - lastTime);
-    lastTime = timestamp;
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    robot.update(ctx, deltaTime, path);
-    drawPath(path);
-    robot.draw(ctx);
-    if (!robot.isDoneMoving()) {
-        requestID = window.requestAnimationFrame(loop);
-        console.log("kept on line " + robot.keptOnLine + " got to the end " + robot.checkFinalPosition(path));
-        if (robot.checkFinalPosition(path) && robot.keptOnLine) {
-            document.getElementById('aiChat').value = "Success, you got the robot to the end!";
-        } else if (robot.checkFinalPosition(path) && !robot.keptOnLine) {
-            document.getElementById('aiChat').value = "The robot got to the end but it didn't follow the line!";
-        }
-
-    } else {
-        window.cancelAnimationFrame(requestID);
-    }
-}
-
-
+// Draw lines for the given level
 function loadLevel(num) {
     reset();
     switch (num) {
@@ -73,12 +39,76 @@ function loadLevel(num) {
     robot.draw(ctx);
 }
 
-
-window.onload = function () {
-    loadLevel(-1);
-
+// Helper method to get numbers from user code
+function getNumberFromLine(str) {
+    return parseInt(str.replace(/[^0-9]/g, ''), 10);
 }
 
+// Reset window and the robot
+function reset() {
+    robot = new Robot(canvas.width, canvas.height, 0, 0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    robot.draw(ctx);
+}
+
+// Draw path given a list of points
+function drawPath(pathPoints) {
+    let first = true;
+    pathPoints.forEach(pathPoint => {
+        if (first) {
+            ctx.beginPath();
+            ctx.moveTo(pathPoint[0], pathPoint[1]);
+            first = false;
+        }
+        ctx.lineTo(pathPoint[0], pathPoint[1]);
+    })
+    ctx.stroke();
+}
+
+// Animation loop
+function loop(timestamp) {
+    let deltaTime = (timestamp - lastTime);
+    lastTime = timestamp;
+
+    // Draw update
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    robot.update(ctx, deltaTime, path);
+    drawPath(path);
+    robot.draw(ctx);
+
+    // Check if goal was reached
+    if (!robot.isDoneMoving()) {
+        requestID = window.requestAnimationFrame(loop);
+        if (robot.checkFinalPosition(path) && robot.keptOnLine) document.getElementById('aiChat').value = "Success! You got the robot to the end!";
+        else if (robot.checkFinalPosition(path) && !robot.keptOnLine) document.getElementById('aiChat').value = "The robot got to the end but it didn't follow the line!";
+
+    } else window.cancelAnimationFrame(requestID);
+}
+
+// Used by the RunCode button
+export function runCode(code) {
+    reset();
+
+    // Convert code from user
+    let queue = [];
+    code.split('\n').forEach(line => {
+        if (line.includes('Left')) queue.push({x: -getNumberFromLine(line), y: robot.position.y});
+        else if (line.includes('Right')) queue.push({x: getNumberFromLine(line), y: robot.position.y});
+        else if (line.includes('Down')) queue.push({x: robot.position.x, y: getNumberFromLine(line)});
+        else if (line.includes('Up')) queue.push({x: robot.position.x, y: -getNumberFromLine(line)});
+    });
+    // Give the robot where to go and run the animation
+    robot.queue = queue;
+    loop();
+}
+
+// Give the player no level - playground to try moving the robot
+window.onload = function () {
+    loadLevel(-1);
+}
+
+// Handlers for user choosing the levels
 document.getElementById('level1select').addEventListener('click', function () {
     loadLevel(1);
 });
@@ -88,34 +118,3 @@ document.getElementById('level2select').addEventListener('click', function () {
 document.getElementById('level3select').addEventListener('click', function () {
     loadLevel(3);
 });
-
-function getNumberFromLine(str) {
-    return parseInt(str.replace(/[^0-9]/g, ''), 10);
-}
-
-function reset() {
-    robot = new Robot(canvas.width, canvas.height, 0, 0);
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    robot.draw(ctx);
-}
-
-export function runCode(code) {
-    reset();
-
-    let queue = [];
-    code.split('\n').forEach(line => {
-        if (line.includes('Left')) {
-            queue.push({x: -getNumberFromLine(line), y: robot.position.y});
-        } else if (line.includes('Right')) {
-            queue.push({x: getNumberFromLine(line), y: robot.position.y});
-        } else if (line.includes('Down')) {
-            queue.push({x: robot.position.x, y: getNumberFromLine(line)});
-        } else if (line.includes('Up')) {
-            queue.push({x: robot.position.x, y: -getNumberFromLine(line)});
-        }
-    });
-
-    robot.queue = queue;
-    loop();
-}
-
