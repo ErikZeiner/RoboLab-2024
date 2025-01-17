@@ -1,4 +1,5 @@
 // @author: Erik Zeiner
+// @author of the prompt: Sung-Jin Miriam Han
 
 import {runCode} from './script.js';
 import {config} from './config.js';
